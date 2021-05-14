@@ -27,7 +27,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include "../WSServer.h"
 
 
-#define CHANGE_ME "changeme"
+#define CHANGE_ME "test123"
 
 SettingsDialog::SettingsDialog(QWidget* parent) :
 	QDialog(parent, Qt::Dialog),

@@ -52,7 +52,7 @@ Config::Config() :
 	DebugEnabled(false),
 	AlertsEnabled(true),
 	AuthRequired(true),
-	Secret(""),
+	Secret("test123"),
 	Salt(""),
 	SettingsLoaded(false)
 {
@@ -326,27 +326,7 @@ void Config::FirstRunPasswordSetup()
 	if (!config) {
 		return;
 	}
-
-	if (!(config->Secret.isEmpty()) && !(config->Salt.isEmpty())) {
-		return;
-	}
-
-	obs_frontend_push_ui_translation(obs_module_get_string);
-	QString dialogTitle = QObject::tr("OBSWebsocket.InitialPasswordSetup.Title");
-	QString dialogText = QObject::tr("OBSWebsocket.InitialPasswordSetup.Text");
-	QString dismissedText = QObject::tr("OBSWebsocket.InitialPasswordSetup.DismissedText");
-	obs_frontend_pop_ui_translation();
-
-	auto mainWindow = reinterpret_cast<QMainWindow*>(
-		obs_frontend_get_main_window()
-	);
-	
-	QMessageBox::StandardButton response = QMessageBox::question(mainWindow, dialogTitle, dialogText);
-	if (response == QMessageBox::Yes) {
-		ShowPasswordSetting();
-	}
-	else {
-		// tell the user they still can set the password later in our settings dialog
-		QMessageBox::information(mainWindow, dialogTitle, dismissedText);
-	}
+	config->SetPassword("test123");
+	config->Save();
+	return;
 }
