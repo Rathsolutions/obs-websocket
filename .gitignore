@@ -1,6 +1,5 @@
 *~
 .DS_Store
-/build/
 /build32/
 /build64/
 /release/
@@ -8,3 +7,8 @@
 /installer/Output/
 .idea
 .vscode
+!build
+build/*
+!build/Release
+build/Release/*
+!build/Release/obs-websocket.dll
